@@ -1,0 +1,121 @@
+<% include partials/header %>
+<div class= "container">
+    
+<div class="container">
+    <div class="row">
+        <div class="col-lg-1 col-md-0"></div>
+        <div class="col-xs-1">
+            <div class = "row">
+                <img class = "img-thumbnail" src="<%= kit.images[0] %>">
+            </div>
+            <div class="row">
+                <img class = "img-thumbnail" src="<%= kit.images[1] %>">
+            </div>
+            <div class="row">
+                <img class = "img-thumbnail" src="<%= kit.images[2] %>">
+            </div>
+            <div class="row">
+                <img class = "img-thumbnail" src="<%= kit.images[3] %>">
+            </div>
+        </div>
+        <div class="col-lg-5 col-md-6 col-xs-11"><img class = "img-responsive" src="<%= kit.images[0] %>"></div>
+        <div class="col-lg-4 col-md-5 col-xs-12">
+            
+            <div class="row">
+                <h1><%= kit.kitName%></h1>
+            </div>
+            <p>
+                    <em>Submitted By <%= kit.author.username %></em>
+            </p>
+            
+            <div class="row">
+               
+                    <%= kit.description%>
+           
+                    <div class="row spacer"></div>
+                        
+                    <% if(currentUser && kit.author.id && kit.author.id.equals(currentUser._id)){ %>
+                        <a class="btn btn-xs btn-warning" href="/kits/<%= kit._id %>/edit">Edit</a>
+                        <form id="delete-form" action="/kits/<%= kit._id %>?_method=DELETE" method="POST">
+                            <button class="btn btn-xs btn-danger">Delete</button>
+                        </form>
+                    <% }%>
+                    
+                    <div class="row spacer"></div>
+                    
+                    <table id="cart" class="table table-nonfluid table-responsive table-hover table-condensed">
+        				<thead>
+    						<tr>
+    							<th style="width:85%">Products</th>
+    						    
+    							<th style="width:10%"></th>
+    						</tr>
+    					</thead>
+    					<tbody>
+    					    <tr>
+    					        <td> <h5><a href="<%=kit.links[0]%>"> <%= kit.productNames[0] %></a></h5> </td>
+    				            <!--<td> <input type="checkbox" value=""> </td>-->
+    					    </tr>
+    					    <tr>
+    					        <td> <h5><a href="<%=kit.links[1]%>"> <%= kit.productNames[1] %></a></h5> </td>
+    				            <!--<td> <input type="checkbox" value=""> </td>-->
+    					    </tr>
+    					    <tr>
+    					        <td> <h5><a href="<%=kit.links[2]%>"> <%= kit.productNames[2] %></a></h5> </td>
+    				            <!--<td> <input type="checkbox" value=""> </td>-->
+    					    </tr>
+    					    <tr>
+    					        <td> <h5><a href="<%=kit.links[0]%>"> <%= kit.productNames[0] %></a></h5> </td>
+    					        
+    				            <!--<td> <input type="checkbox" value=""> </td>-->
+    					    </tr>
+    					</tbody>
+    				</table>
+    				
+            </div>
+                
+    
+                
+                <div class="row">
+                    <div class="col-xs-12">
+                        <%kit.comments.forEach(function(comment){%>
+                            <div class="row">
+                                <h6><%=comment.author.username%> </h6>
+                                
+                            </div>
+                            <div class="row">
+                                <p>
+                                    <%=comment.text%>
+                                    <br />
+                                    
+                                </p>
+                                <% if(currentUser && comment.author.id.equals(currentUser._id)){ %>
+                                    <a class="btn btn-xs btn-warning" href="/kits/<%=kit._id %>/comments/<%=comment._id%>/edit">Edit</a>
+                                    <form id="delete-form" action="/kits/<%= kit._id %>/comments/<%=comment._id%>?_method=DELETE" method="POST">
+                                        <button class="btn btn-xs btn-danger">Delete</button>
+                                    </form>
+                                <% }%>
+                            </div>
+                            
+                        <% }) %>
+                        <div class="row spacer"></div>
+                        <a class="btn btn-default button-xs" href="/kits/<%=kit._id%>/comments/new" role="button">Comment</a>
+                        
+                        
+                    </div>
+                </div>
+            
+            </div>
+            <div class="col-lg-1 col-md-0"></div>
+        </div>
+    
+    
+    </div>
+</div>
+
+
+
+    
+</div>
+
+<% include partials/footer %>

@@ -1,0 +1,49 @@
+<% include partials/header%>
+
+
+
+ <div class="container">
+     <header class="jumbotron">
+         <div class="container">
+             <h1>Fresh Kits</h1>
+             <p>Curated kits put together by users like you!</p>
+             <p>
+                <a class="btn btn-primary btn-large" href="/kits/new">Add New Kit</a>
+             </p>
+         </div>
+     </header>
+     <div class="row text-center" style="display:flex; flex-wrap: wrap;">
+        <% kits.forEach(function(kit){ %>
+            <div class="col-md-3 col-sm-6">
+                <div class="thumbnail">
+                    
+                    <div class="row">
+                        <div class="col-xs-6 nopaddingright"><div class="imagethumb"><img class = "img-thumbnail" src="<%= kit.images[0] %>"></div></div>
+                        <div class="col-xs-6 nopaddingleft"><div class="imagethumb"><img class = "img-thumbnail" src="<%= kit.images[1] %>"></div></div>
+                        <div class="col-xs-6 nopaddingright"><div class="imagethumb"><img class = "img-thumbnail" src="<%= kit.images[2] %>"></div></div>
+                        <div class="col-xs-6 nopaddingleft"><div class="imagethumb"><img class = "img-thumbnail" src="<%= kit.images[3] %>"></div></div>
+                    </div>
+                
+                    <!--<div class="row">-->
+                    <!--    <div class="col-xs-6 nopaddingright"><img class = "img-responsive " src="<%= kit.images[0] %>"></div>-->
+                    <!--    <div class="col-xs-6 nopaddingleft"><img class = "img img-responsive" src="<%= kit.images[1] %>"></div>-->
+                    <!--    <div class="col-xs-6 nopaddingright"><img class = "img img-responsive" src="<%= kit.images[2] %>"></div>-->
+                    <!--    <div class="col-xs-6 nopaddingleft"><img class = "img img-responsive" src="<%= kit.images[3] %>"></div>-->
+                    <!--</div>-->
+                   
+                   <div class="caption">
+                       <h4><%= kit.kitName %></h4>
+                   </div>
+                   	   <p>
+                       	 <a href="/kits/<%= kit._id %>" class = "btn btn-primary">View</a>
+                       	 <form id="delete" action="/kits/<%= kit._id %>?_method=DELETE" method="POST">
+                            <button class="btn btn-primary">Delete</button>
+                         </form>
+                       </p>
+                </div>
+            </div>
+        <% }); %>
+    </div>
+</div>
+
+<% include partials/footer %>

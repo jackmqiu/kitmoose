@@ -1,0 +1,32 @@
+.nopaddingright{
+    padding-right:0;
+    
+}
+.nopaddingleft{
+    padding-left:0;
+}
+
+.imagethumb {
+    position:relative;
+    overflow:hidden;
+    padding-bottom:100%;
+}
+.imagethumb img{
+      position: absolute;
+      max-width: 100%;
+      /*max-height: 100%;*/
+      top: 50%;
+      left: 50%;
+      transform: translateX(-50%) translateY(-50%);
+}
+
+.table-nonfluid {
+   width: auto !important;
+}
+.spacer {
+    margin-top: 40px; /* define margin as you see fit */
+}
+
+#delete-form {
+    display: inline;
+}
