@@ -25,7 +25,9 @@ var Comment = require('./models/comment');
 
 
 //APP CONFIG
-mongoose.connect("mongodb://localhost/starterkits");
+//mongoose.connect("mongodb://localhost/starterkits");
+mongoose.connect("mongodb://kitmoose:sharedpass1@ds135912.mlab.com:35912/kitmoose")
+
 app.use(express.static("public"));
 app.use(bodyParser.urlencoded({extended: true}));
 app.set('view engine', 'ejs');
