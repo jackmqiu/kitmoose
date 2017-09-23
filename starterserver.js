@@ -9,8 +9,13 @@ var passport = require("passport");
 var LocalStrategy = require("passport-local");
 var passportLocalMongoose = require("passport-local-mongoose");
 var User = require("./models/user");
+var amazon = require('amazon-product-api');
 
-
+var client = amazon.createClient({
+  awsId: "AKIAJTCJ2FVMF2NGS3HA",
+  awsSecret: "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",
+  awsTag: "kitmoose-20"
+});
 
 var commentRoutes = require("./routes/comments"),
     kitRoutes = require("./routes/kits"),
@@ -54,7 +59,7 @@ app.use(function(req, res, next){
     next();
 });
 
-
+//requiring routes
 app.use(authRoutes);
 app.use("/kits", kitRoutes);
 app.use("/kits/:id/comments", commentRoutes);
